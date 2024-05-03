@@ -54,9 +54,7 @@ paymentRouter.post("/verification", async (req, res) => {
         razorpay_signature,
       });
       await newPayment.save();
-      res.redirect(
-        `https://small-big-growth.vercel.app/success/?payment_id=${razorpay_payment_id}`
-      );
+      res.send({ "Payment successful": razorpay_payment_id });
     } else {
       res.send();
     }
