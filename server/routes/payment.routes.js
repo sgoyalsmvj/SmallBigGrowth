@@ -58,7 +58,7 @@ paymentRouter.post("/verification", authenticateUser, async (req, res) => {
         `${process.env.FRONTEND_URL}/success/?payment_id=${razorpay_payment_id}`
       );
     } else {
-      res.send("Payment failed");
+      res.send();
     }
   } catch (error) {
     console.error("Error verifying payment:", error);

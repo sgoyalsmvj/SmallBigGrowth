@@ -1,12 +1,9 @@
-// authRouter.js
-
 import { Router } from "express";
 import User from "../models/user.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import passport from "passport";
 import authenticateUser from "../middleware/auth.js";
-
 const authRouter = Router();
 
 authRouter.post("/register", async (req, res) => {
@@ -17,10 +14,12 @@ authRouter.post("/register", async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     res.cookie("token", token, {
       httpOnly: true,
+      withCredentials: true,
     });
-    res.status(201).json({ token });
+
+    res.status(201).json({ token, user });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json(error);
   }
 });
 
@@ -38,8 +37,9 @@ authRouter.post("/login", async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     res.cookie("token", token, {
       httpOnly: true,
+      withCredentials: true,
     });
-    res.status(200).json({ token });
+    res.json({ token });
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error" });
   }
@@ -50,13 +50,12 @@ authRouter.get("/me", authenticateUser, async (req, res) => {
     const user = await User.findById(req.user.id).select("-password");
     res.json(user);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json(error);
   }
 });
 
 authRouter.get("/logout", (req, res) => {
-  res.clearCookie("token");
-  res.status(200).json("Logged out");
+  res.clearCookie("token").json("Logged out");
 });
 
 authRouter.get(
@@ -64,13 +63,20 @@ authRouter.get(
   passport.authenticate("google", { failureRedirect: "/login/failed" }),
   (req, res) => {
     try {
-      const token = jwt.sign({ email: req.user._json.email }, process.env.JWT_SECRET);
+      // console.log(`heree is the req.user ${req.user} thank you`, req.user._json.email);
+      const token = jwt.sign(
+        { email: req.user._json.email },
+        process.env.JWT_SECRET
+      );
       res.cookie("token", token, {
         httpOnly: true,
+        withCredentials: true,
       });
-      res.redirect(`${process.env.FRONTEND_URL}/homepage`);
+      res
+        .json({ email: req.user._json.email })
+        .redirect(`${process.env.FRONTEND_URL}/homepage`);
     } catch (error) {
-      res.status(500).json({ message: error.message });
+      res.status(500).json({ message: error.m });
     }
   }
 );

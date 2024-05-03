@@ -1,8 +1,6 @@
-// leadRouter.js
-
-import { Router } from "express";
-import Lead from "../models/lead.js";
 import authenticateUser from "../middleware/auth.js";
+import Lead from "../models/lead.js";
+import { Router } from "express";
 
 const leadRouter = Router();
 

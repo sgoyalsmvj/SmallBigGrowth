@@ -23,7 +23,7 @@ const LoginPage = () => {
     }
   }
   const googleAuth = async () => {
-    window.open("/google/callback", "_self");
+    window.open("https://smallbiggrowthbackend.onrender.com/google/callback", "_self");
   };
 
   if (redirect) {
