@@ -6,7 +6,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/google/callback",
+      callbackURL: "https://smallbiggrowthbackend.onrender.com/google/callback",
       scope: [ "profile", "email" ],
     },
     (accessToken, refreshToken, profile, callback) => {
