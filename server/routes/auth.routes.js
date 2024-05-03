@@ -3,6 +3,7 @@ import User from "../models/user.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import passport from "passport";
+// import passport  from "../passport.js";
 import authenticateUser from "../middleware/auth.js";
 const authRouter = Router();
 

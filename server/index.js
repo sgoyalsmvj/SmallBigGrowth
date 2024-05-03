@@ -9,7 +9,7 @@ import paymentRouter from "./routes/payment.routes.js";
 // import cookieSession from "cookie-session";
 import passport from "passport";
 import session from "express-session";
-// import passportSetup from "./passport.js";
+import passport from "./passport.js";
 import dotenv from "dotenv";
 dotenv.config();
 const app = express();
