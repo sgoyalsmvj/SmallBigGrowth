@@ -26,7 +26,7 @@ const Register = () => {
   }
 
   const googleAuth = async () => {
-    window.open("https://smallbiggrowthbackend.onrender.com/google/callback", "_self");
+    window.open("http://smallbiggrowthbackend.onrender.com/google/callback", "_self");
   };
 
   if (redirect) {
