@@ -8,7 +8,7 @@ import authenticateUser from "../middleware/auth.js";
 const paymentRouter = Router();
 
 const instance = new Razorpay({
-  key_id:process.env.RAZORPAY_KEY_ID,
+  key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
@@ -27,7 +27,7 @@ paymentRouter.post("/razorpay", async (req, res) => {
   }
 });
 
-paymentRouter.post("/verification",  async (req, res) => {
+paymentRouter.post("/verification", async (req, res) => {
   try {
     // console.log(req.body)
     const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
@@ -55,7 +55,7 @@ paymentRouter.post("/verification",  async (req, res) => {
       });
       await newPayment.save();
       res.redirect(
-        `${process.env.FRONTEND_URL}/success/?payment_id=${razorpay_payment_id}`
+        `https://small-big-growth.vercel.app/success/?payment_id=${razorpay_payment_id}`
       );
     } else {
       res.send();
