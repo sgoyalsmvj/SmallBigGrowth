@@ -6,7 +6,7 @@ export function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
   const [ready, setReady] = useState(false);
   useEffect(() => {
-    axios.get(`https://smallbiggrowthbackend.onrender.com/login/me`).then(({ data }) => {
+    axios.get(`https://smallbiggrowthbackend.onrender.com/me`).then(({ data }) => {
       setUser(data);
       setReady(true);
     });
