@@ -11,7 +11,7 @@ const Homepage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/getAllLeads");
+        const response = await axios.get("https://smallbiggrowthbackend.onrender.com/getAllLeads");
         setLeadList(response.data);
       } catch (error) {
         console.error("Error fetching leads:", error);

@@ -10,7 +10,7 @@ const RevealEmail = () => {
     const fetchEmail = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/getLeadEmail/${id}`
+          `https://smallbiggrowthbackend.onrender.com/getLeadEmail/${id}`
         );
         setLead(response.data);
       } catch (error) {
@@ -26,7 +26,7 @@ const RevealEmail = () => {
 
     try {
       // Call your backend to create a Razorpay order
-      const response = await axios.post("http://localhost:5000/razorpay", {
+      const response = await axios.post("https://smallbiggrowthbackend.onrender.com/razorpay", {
         amount: 500, // Specify the amount to charge the user
         currency: "INR", // Specify the currency
       });
@@ -40,7 +40,7 @@ const RevealEmail = () => {
         currency: "INR",
         name: "Acme Corp", // Your business name
         order_id: order_id, // Pass the order_id obtained from your backend
-        callback_url: `http://localhost:5000/verification`,
+        callback_url: `https://smallbiggrowthbackend.onrender.com/verification`,
 
         theme: {
           color: "#3399cc",

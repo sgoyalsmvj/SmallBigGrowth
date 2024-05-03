@@ -12,7 +12,7 @@ const Register = () => {
   async function registerUser(ev) {
     ev.preventDefault();
     try {
-      const data = await axios.post("http://localhost:5000/register", {
+      const data = await axios.post("https://smallbiggrowthbackend.onrender.com/register", {
         name,
         email,
         password,
@@ -26,7 +26,7 @@ const Register = () => {
   }
 
   const googleAuth = async () => {
-    window.open("http://localhost:5000/google/callback", "_self");
+    window.open("https://smallbiggrowthbackend.onrender.com/google/callback", "_self");
   };
 
   if (redirect) {

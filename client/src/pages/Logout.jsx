@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 const Logout = () => {
   async function handleLogout() {
     try {
-      await axios.get("http://localhost:5000/logout");
+      await axios.get("https://smallbiggrowthbackend.onrender.com/logout");
       return <Navigate to="/" />;
     } catch (error) {
       console.error("Logout failed:", error);

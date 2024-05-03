@@ -11,7 +11,7 @@ const LoginPage = () => {
   async function handleLoginSubmit(ev) {
     ev.preventDefault();
     try {
-      const { data } = await axios.post("/login", {
+      const { data } = await axios.post("https://smallbiggrowthbackend.onrender.com/login", {
         email,
         password,
       });
