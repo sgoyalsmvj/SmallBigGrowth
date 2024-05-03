@@ -12,7 +12,7 @@ const instance = new Razorpay({
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
-paymentRouter.post("/razorpay", authenticateUser, async (req, res) => {
+paymentRouter.post("/razorpay", async (req, res) => {
   try {
     const order = await instance.orders.create({
       amount: req.body.amount,
@@ -27,7 +27,7 @@ paymentRouter.post("/razorpay", authenticateUser, async (req, res) => {
   }
 });
 
-paymentRouter.post("/verification", authenticateUser, async (req, res) => {
+paymentRouter.post("/verification",  async (req, res) => {
   try {
     // console.log(req.body)
     const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =

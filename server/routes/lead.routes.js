@@ -4,7 +4,7 @@ import { Router } from "express";
 
 const leadRouter = Router();
 
-leadRouter.get("/getAllLeads", authenticateUser, async (req, res) => {
+leadRouter.get("/getAllLeads",  async (req, res) => {
   try {
     const leads = await Lead.find(
       {},
@@ -16,7 +16,7 @@ leadRouter.get("/getAllLeads", authenticateUser, async (req, res) => {
   }
 });
 
-leadRouter.get("/getLeadEmail/:id", authenticateUser, async (req, res) => {
+leadRouter.get("/getLeadEmail/:id", async (req, res) => {
   try {
     const lead = await Lead.findById(req.params.id);
     res.json(lead);
