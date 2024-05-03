@@ -14,6 +14,7 @@ authRouter.post("/register", async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     res.cookie("token", token, {
       httpOnly: true,
+      withCredentials: true,
     });
     res.status(201).json({ token });
   } catch (error) {
@@ -35,6 +36,7 @@ authRouter.post("/login", async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     res.cookie("token", token, {
       httpOnly: true,
+      withCredentials:true,
     });
     res.status(200).json({ token });
   } catch (error) {
@@ -64,6 +66,7 @@ authRouter.get(
       const token = jwt.sign({ email: req.user._json.email }, process.env.JWT_SECRET);
       res.cookie("token", token, {
         httpOnly: true,
+        withCredentials: true,
       });
       res.redirect(`${process.env.FRONTEND_URL}/homepage`);
     } catch (error) {
