@@ -1,7 +1,7 @@
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import passport from "passport";
 
-passport.use(
+const passportSetup = passport.use(
 	new GoogleStrategy(
 		{
 			clientID: process.env.GOOGLE_CLIENT_ID,
@@ -23,4 +23,4 @@ passport.deserializeUser((user, done) => {
 	done(null, user);
 });
 
-export default passport;
+export default passportSetup;

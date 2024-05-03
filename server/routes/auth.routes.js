@@ -3,7 +3,7 @@ import User from "../models/user.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import passport from "passport";
-// import passport  from "../passport.js";
+import passportSetup from "../passport.js";
 import authenticateUser from "../middleware/auth.js";
 const authRouter = Router();
 
@@ -39,7 +39,7 @@ authRouter.post("/login", async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     res.cookie("token", token, {
       httpOnly: true,
-      secure : true,
+      secure: true,
       withCredentials: true,
     });
     res.json({ token });
