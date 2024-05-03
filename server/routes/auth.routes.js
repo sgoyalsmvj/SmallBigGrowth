@@ -13,6 +13,8 @@ authRouter.post("/register", async (req, res) => {
     await user.save();
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
       withCredentials: true,
     });
 
@@ -35,6 +37,8 @@ authRouter.post("/login", async (req, res) => {
     }
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     res.cookie("token", token, {
+      httpOnly: true,
+      secure : true,
       withCredentials: true,
     });
     res.json({ token });
@@ -67,6 +71,8 @@ authRouter.get(
         process.env.JWT_SECRET
       );
       res.cookie("token", token, {
+        httpOnly: true,
+        secure: true,
         withCredentials: true,
       });
       res
