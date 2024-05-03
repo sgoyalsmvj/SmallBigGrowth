@@ -67,18 +67,18 @@ authRouter.get(
   (req, res) => {
     try {
       // console.log(`heree is the req.user ${req.user} thank you`, req.user._json.email);
-      const token = jwt.sign(
-        { email: req.user._json.email },
-        process.env.JWT_SECRET
-      );
-      res.cookie("token", token, {
-        httpOnly: true,
-        secure: true,
-        withCredentials: true,
-      });
+      // const token = jwt.sign(
+      //   { email: req.user._json.email },
+      //   process.env.JWT_SECRET
+      // );
+      // res.cookie("token", token, {
+      //   httpOnly: true,
+      //   secure: true,
+      //   withCredentials: true,
+      // });
       res.redirect(`${process.env.FRONTEND_URL}/homepage`);
     } catch (error) {
-      res.status(500).json({ message: error.m });
+      res.status(500).json({ message: error.message });
     }
   }
 );
