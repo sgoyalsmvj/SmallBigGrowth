@@ -76,9 +76,7 @@ authRouter.get(
         secure: true,
         withCredentials: true,
       });
-      res
-        .json({ email: req.user._json.email })
-        .redirect(`${process.env.FRONTEND_URL}/homepage`);
+      res.redirect(`${process.env.FRONTEND_URL}/homepage`);
     } catch (error) {
       res.status(500).json({ message: error.m });
     }
