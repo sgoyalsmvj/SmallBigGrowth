@@ -1,9 +1,12 @@
+// authRouter.js
+
 import { Router } from "express";
 import User from "../models/user.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import passport from "passport";
 import authenticateUser from "../middleware/auth.js";
+
 const authRouter = Router();
 
 authRouter.post("/register", async (req, res) => {
@@ -14,7 +17,6 @@ authRouter.post("/register", async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     res.cookie("token", token, {
       httpOnly: true,
-      withCredentials: true,
     });
     res.status(201).json({ token });
   } catch (error) {
@@ -36,7 +38,6 @@ authRouter.post("/login", async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     res.cookie("token", token, {
       httpOnly: true,
-      withCredentials:true,
     });
     res.status(200).json({ token });
   } catch (error) {
@@ -54,8 +55,8 @@ authRouter.get("/me", authenticateUser, async (req, res) => {
 });
 
 authRouter.get("/logout", (req, res) => {
-  res.clearCookie("token").json("Logged out");
-  res.redirect(`${process.env.FRONTEND_URL}/`);
+  res.clearCookie("token");
+  res.status(200).json("Logged out");
 });
 
 authRouter.get(
@@ -66,7 +67,6 @@ authRouter.get(
       const token = jwt.sign({ email: req.user._json.email }, process.env.JWT_SECRET);
       res.cookie("token", token, {
         httpOnly: true,
-        withCredentials: true,
       });
       res.redirect(`${process.env.FRONTEND_URL}/homepage`);
     } catch (error) {
